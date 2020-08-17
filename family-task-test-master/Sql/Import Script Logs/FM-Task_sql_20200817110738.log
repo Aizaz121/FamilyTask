@@ -1,0 +1,9 @@
+8/17/2020 11:07:38 AM	This log contains information about the import operation of the script 'FM-Task.sql' into project 'Sql' on computer 'Bilal' by user'Bilal.
+8/17/2020 11:07:38 AM	Started importing file: C:\Project-Azi\FM-Task.sql 
+8/17/2020 11:07:38 AM	File name C:\Project-Azi\FM-Task.sql (size: 0)
+8/17/2020 11:07:38 AM	Parsing import script
+8/17/2020 11:07:38 AM	Total number of batches in script: 0
+8/17/2020 11:07:38 AM	Total number of statements in script: 0
+8/17/2020 11:07:38 AM	The script was successfully imported into the project.
+8/17/2020 11:07:38 AM	A summary of the import was saved to the following location: C:\Project-Azi\family-task-test-master\Sql\Import Script Logs\FM-Task_sql_20200817110738.log
+8/17/2020 11:07:38 AM	Click Finish to continue...
