@@ -1,0 +1,61 @@
+@page "/manage-tasks"
+@inject HttpClient Http
+@using FamilyTask.Components
+@using FamilyTask.Shared.Components
+@inherits TasksBase
+
+
+@if (isLoaded)
+{
+    <div class="page-wrapper row m-0 col-12 p-0">
+        <div class="col-4 p-0">
+            <LeftMenu MenuItems="@leftMenuItem.ToArray()" OnAddItem="@onAddItem" />
+        </div>
+        <div class="col-8 p-0">
+            @if (showLister)
+            {<div class="col-10 offset-1 pt-5">
+                    <div class="row m-0">
+                        <Field class="col-5 p-0 custom-input">
+                            <TextEdit Placeholder="Enter New Task" @bind-Text="@subject" />
+                        </Field>
+                        <div class="col-5 p-0 custom-input">
+                            <select @onchange=@onMemberSelect class="form-group form-control">
+                                @foreach (var item in members)
+                                {
+                                    <option value=@item.id.ToString()>@item.firstname @item.lastname</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-2 p-0 text-right">
+                            <Button class="add-btn px-4" @onclick="onCreateClick">Add</Button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 offset-1">
+                    <TaskListerComponent Tasks="@tasksToShow" />
+                </div>}
+            @if (showCreator)
+            {
+                <div class="col-10 offset-1 pt-5">
+                    <FamilyMemberCreator onAddCallback="@onMemberAdd" />
+                </div>}
+        </div>
+    </div>}
+
+@code {
+    private TaskModel TaskObject = new TaskModel();
+
+    private async void onCreateClick()
+    {
+        TaskObject.selectedMember = Guid.Parse(selectedMemberId);
+        TaskObject.text = subject;
+        await onAddNewTask(TaskObject);
+        TaskObject = new TaskModel();
+    }
+
+    void onMemberSelect(ChangeEventArgs e)
+    {
+        selectedMemberId = e.Value.ToString();
+    }
+
+}
